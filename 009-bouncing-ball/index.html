@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Bouncing Ball</title>
+		<link rel="stylesheet" href="./style.css">
+		<script src="//localhost/dev/live.js"></script>
+	</head>
+	<body>
+		<div id="wrapper">
+			<div id="main">
+				<div id="game">
+					<div id="instructions">
+						Catch the bouncing ball
+						<div id="more">
+							Click the ball to advance to the next level.
+						</div>
+					</div>
+					<canvas id="canvas"></canvas>
+					<div id="message"></div>
+				</div>
+				<div id="footer">
+					<a href="../">Home</a>
+					&nbsp;
+					<a href="...">Blog</a>
+				</div>
+			</div>
+		</div>
+		<script type="module">
+			import drawEllipse from "./utils/drawEllipse.js";
+			import Game from "./Game.js";
+			
+			let canvas = document.getElementById("canvas");
+			let messageDiv = document.getElementById("message");
+			let ctx = canvas.getContext("2d");
+			
+			let game = new Game(canvas);
+			
+			showCanvas();
+			
+			canvas.width = game.canvas.width;
+			canvas.height = game.canvas.height;
+			ctx.width = game.canvas.width;
+			ctx.height = game.canvas.height;
+			
+			let interval;
+			
+			function start() {
+				interval = setInterval(tick, 1000 / game.level.speed);
+			}
+			
+			function stop() {
+				clearInterval(interval);
+			}
+			
+			start();
+			
+			function showCanvas() {
+				canvas.classList.remove("hide");
+				message.classList.add("hide");
+			}
+			
+			function showMessage() {
+				canvas.classList.add("hide");
+				message.classList.remove("hide");
+				
+				message.innerHTML = game.level.successMessage;
+			}
+			
+			function click() {
+				goToNextLevel();
+			}
+			
+			function tick() {
+				game.tick();
+			}
+			
+			function goToNextLevel() {
+				game.goToNextLevel();
+				stop();
+				showMessage();
+				
+				setTimeout(function() {
+					showCanvas();
+					start();
+				}, 2000);
+			}
+			
+			function render() {
+				ctx.fillStyle = game.canvas.backgroundColor;
+				ctx.fillRect(0, 0, game.canvas.width, game.canvas.height);
+				ctx.fillStyle = game.ball.color;
+				
+				let {x, y, width, height} = game.ball;
+				
+				drawEllipse(ctx, x, y, width, height);
+				
+				setTimeout(function() {
+					requestAnimationFrame(render);
+				}, 1000 / 30);
+			}
+			
+			render();
+			
+			game.ball.on("click", click);
+		</script>
+	</body>
+</html>

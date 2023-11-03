@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Caterpillar</title>
+		<link rel="stylesheet" href="./style.css">
+		<script src="//localhost/dev/live.js"></script>
+	</head>
+	<body>
+		<div id="wrapper"></div>
+		<script>
+			const NO_OF_BALLS = 12;
+			
+			let lastMousePosition = {
+				x: 0,
+				y: 0,
+			};
+			
+			let wrapperDiv = document.getElementById("wrapper");
+			let ballDivs = [];
+			
+			function getPosition(div) {
+				let y = div.style.top || "0px";
+				let x = div.style.left || "0px";
+				
+				x = Number(x.slice(0, -2));
+				y = Number(y.slice(0, -2));
+				
+				return {x, y};
+			}
+			
+			function getRandomColor() {
+				let r = Math.ceil(Math.random() * 255);
+				let g = Math.ceil(Math.random() * 255);
+				let b = Math.ceil(Math.random() * 255);
+				
+				return "rgb(" + r + ", " + g + ", " + b + ")";
+			}
+			
+			for (let i = 0; i < NO_OF_BALLS; i++) {
+				let ballDiv = document.createElement("div");
+				
+				let size = 10 + Math.round(Math.random() * 50);
+				
+				ballDiv.style.width = size + "px";
+				ballDiv.style.height = size + "px";
+				ballDiv.style.borderRadius = (size / 2) + "px";
+				ballDiv.style.backgroundColor = getRandomColor();
+				ballDiv.style.position = "absolute";
+				
+				wrapperDiv.appendChild(ballDiv);
+				ballDivs.push(ballDiv);
+			}
+			
+			function chase(div, pos) {
+				let {x, y} = getPosition(div);
+				
+				let xDiff = pos.x - x;
+				let yDiff = pos.y - y;
+				
+				let nextX = Math.round(x + xDiff / (15 + ballDivs.indexOf(div) * 3));
+				let nextY = Math.round(y + yDiff / (15 + ballDivs.indexOf(div) * 3));
+				
+				div.style.top = nextY + "px";
+				div.style.left = nextX + "px";
+			}
+			
+			function tick() {
+				for (let i = 0; i < ballDivs.length; i++) {
+					let ballDiv = ballDivs[i];
+					
+					if (i === 0) {
+						chase(ballDiv, lastMousePosition);
+					} else {
+						let divToFollow = ballDivs[i - 1];
+						
+						chase(ballDiv, getPosition(divToFollow));
+					}
+				}
+			}
+			
+			setInterval(tick, 1000 / 30);
+			
+			function move(e) {
+				lastMousePosition = {
+					x: e.clientX,
+					y: e.clientY,
+				};
+			}
+			
+			window.addEventListener("mousemove", move);
+		</script>
+	</body>
+</html>

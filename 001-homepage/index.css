@@ -1,0 +1,56 @@
+body {
+	font-family: sans-serif;
+	letter-spacing: 1.5px;
+	color: #777;
+}
+
+#nav {
+	text-align: right;
+	border-bottom: 1px solid #aaa;
+	padding: 5px 0;
+}
+
+#nav a {
+	color: #505050;
+	text-decoration: none;
+}
+
+#main {
+	margin: 2em 0;
+	padding: 0 3em;
+}
+
+#main img {
+	float: right;
+}
+
+#main a {
+	font-weight: bold;
+	color: purple;
+}
+
+#hi {
+	color: orange;
+	font-size: 7em;
+	font-weight: bold;
+}
+
+#intro {
+	font-size: 1.7em;
+}
+
+#tagline {
+	color: orange;
+	font-size: 2rem;
+	font-weight: bold;
+}
+
+#todayswebsite {
+	font-size: 1.8em;
+	text-align: center;
+	margin-top: 3rem;
+	margin-bottom: 1.5rem;
+	padding: 2rem;
+	border-top: 1px solid #505050;
+	border-bottom: 1px solid #505050;
+}

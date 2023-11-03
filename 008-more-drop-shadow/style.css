@@ -1,0 +1,35 @@
+body {
+	font-family: sans-serif;
+	margin: 0;
+}
+
+#top {
+	padding: 1em;
+	background: purple;
+}
+
+#top a {
+	color: white;
+}
+
+#image {
+	text-align: center;
+	margin-top: 1.5em;
+}
+
+img {
+	cursor: pointer;
+}
+
+#quote {
+	font-size: 1.5em;
+	text-align: center;
+	width: 500px;
+	margin: 0 auto;
+	margin-top: 1.5rem;
+}
+
+#byline {
+	font-size: 1rem;
+	margin-top: .5em;
+}

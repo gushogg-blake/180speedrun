@@ -1,0 +1,30 @@
+body {
+	font-family: sans-serif;
+	color: white;
+	margin: 0;
+}
+
+.title {
+	font-size: 4em;
+	text-align: center;
+}
+
+.digits {
+	font-size: 4em;
+	font-family: monospace;
+	text-align: center;
+}
+
+.digits.faded {
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+.faded {
+	opacity: .3;
+}
+
+.wrapper {
+	position: relative;
+}

@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+	<head>
+		<title>More Drop Shadow!</title>
+		<link rel="stylesheet" href="./style.css">
+		<script src="//localhost/dev/live.js"></script>
+	</head>
+	<body>
+		<div id="top">
+			<a href="../">Home</a>
+			&nbsp;
+			<a href="...">Blog</a>
+		</div>
+		<div id="image">
+			<img src="./cat.png">
+		</div>
+		<div id="quote">
+			"You will always be lucky if you know how to make friends with strange cats."
+			<div id="byline">
+				- Colonial proverb
+			</div>
+		</div>
+		<script>
+			let shadows = new Map();
+			
+			function getBoxShadow({blur, spread}) {
+				return "0 0 " + blur + "px " + spread + "px #00000080";
+			}
+			
+			function getTextShadow({blur, position}) {
+				return "0 " + position + "px " + blur + "px #00000080";
+			}
+			
+			function setShadows(el, shadows) {
+				el.style.boxShadow = getBoxShadow(shadows);
+				el.style.textShadow = getTextShadow(shadows);
+			}
+			
+			document.body.addEventListener("click", function(e) {
+				let el = e.target;
+				
+				if (shadows.has(el)) {
+					let {blur, spread, position} = shadows.get(el);
+					
+					let next = {
+						blur: blur + 3,
+						spread: spread + 3,
+						position: position + 2,
+					};
+					
+					shadows.set(el, next);
+					
+					setShadows(el, next);
+				} else {
+					let blur = 10;
+					let spread = 0;
+					let position = 0;
+					
+					let initial = {
+						blur,
+						spread,
+						position,
+					};
+					
+					shadows.set(el, initial);
+					
+					setShadows(el, initial);
+				}
+			});
+		</script>
+	</body>
+</html>

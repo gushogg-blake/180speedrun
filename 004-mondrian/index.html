@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Mondrian</title>
+		<link rel="stylesheet" href="./style.css">
+		<script src="//localhost/dev/live.js"></script>
+	</head>
+	<body>
+		<div id="title">
+			Pick a color and paint the canvas
+		</div>
+		<div id="wrapper">
+			<div id="main">
+				<div id="palette"></div>
+				<div id="canvas"></div>
+			</div>
+		</div>
+		<script>
+			let colors = ["red", "yellow", "blue", "white"];
+			let selectedColor = null;
+			
+			let paletteDiv = document.getElementById("palette");
+			
+			for (let color of colors) {
+				let swatchDiv = document.createElement("div");
+				
+				swatchDiv.className = color;
+				
+				paletteDiv.appendChild(swatchDiv);
+				
+				swatchDiv.addEventListener("click", function() {
+					selectedColor = color;
+				});
+			}
+			
+			let swatchDivs = [...paletteDiv.children];
+			
+			let rows = [100, 150, 70, 110];
+			let cols = [120, 300, 70, 140];
+			
+			let canvasDiv = document.getElementById("canvas");
+			
+			for (let height of rows) {
+				let rowDiv = document.createElement("div");
+				rowDiv.style.height = height + "px";
+				rowDiv.className = "row";
+				
+				canvasDiv.appendChild(rowDiv);
+				
+				for (let width of cols) {
+					let cellDiv = document.createElement("div");
+					cellDiv.style.width = width + "px";
+					cellDiv.className = "white";
+					
+					rowDiv.appendChild(cellDiv);
+					
+					cellDiv.addEventListener("click", function() {
+						if (selectedColor) {
+							cellDiv.className = selectedColor;
+						}
+					});
+				}
+			}
+		</script>
+	</body>
+</html>

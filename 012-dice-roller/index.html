@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Dice Roller</title>
+		<link rel="stylesheet" href="./style.css">
+		<script src="//localhost/dev/live.js"></script>
+	</head>
+	<body>
+		<div id="number">
+			Hey you! Give us a roll!
+		</div>
+		<button id="roll">Shake 'em!</button>
+		<script>
+			let button = document.getElementById("roll");
+			let numberDiv = document.getElementById("number");
+			
+			function dice() {
+				return Math.ceil(Math.random() * 6);
+			}
+			
+			button.addEventListener("click", function() {
+				let first = dice();
+				let second = dice();
+				
+				numberDiv.innerHTML = first + second;
+			});
+		</script>
+	</body>
+</html>

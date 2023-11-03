@@ -1,0 +1,55 @@
+body {
+	font-family: sans-serif;
+	margin: 0;
+	letter-spacing: 1px;
+}
+
+#wrapper {
+	display: flex;
+	align-items: stretch;
+	justify-content: center;
+	min-height: 100vh;
+}
+
+#main {
+	display: flex;
+	flex-direction: column;
+	width: 800px;
+}
+
+#instructions {
+	font-size: 1.7em;
+	width: 240px;
+	margin-top: 1.5rem;
+}
+
+#more {
+	font-size: 1.2rem;
+	margin-top: .5rem;
+}
+
+#game {
+	display: flex;
+	gap: 150px;
+	flex-grow: 1;
+}
+
+.hide {
+	display: none;
+}
+
+#ball {
+	width: 100px;
+	height: 100px;
+	border-radius: 50px 100px 20px 50px;
+	background: #4eb1b1;
+}
+
+#footer {
+	padding: 1em;
+	background: #4eb1b1;
+}
+
+#footer a {
+	color: white;
+}

@@ -1,0 +1,28 @@
+body {
+	margin: 0;
+	background: black;
+}
+
+#wrapper {
+	display: flex;
+	justify-content: center;
+}
+
+#main {
+	background: #505050;
+}
+
+.row {
+	display: flex;
+}
+
+.square {
+	width: 100px;
+	height: 100px;
+}
+
+.square:hover {
+	position: relative;
+	z-index: 1;
+	box-shadow: 0 0 8px 0 rgba(255, 255, 255, 100);
+}

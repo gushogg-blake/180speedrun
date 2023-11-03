@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<link rel="stylesheet" href="./style.css">
+		<script src="//localhost/dev/live.js"></script>
+	</head>
+	<body>
+		<div id="buttons">
+			<button id="main">Click me!</button>
+			<button id="shadow1">Click me!</button>
+			<button id="shadow2">Click me!</button>
+			<button id="shadow3">Click me!</button>
+		</div>
+		<script>
+			let button = document.getElementById("main");
+			
+			button.addEventListener("click", function() {
+				let r = Math.ceil(Math.random() * 255);
+				let g = Math.ceil(Math.random() * 255);
+				let b = Math.ceil(Math.random() * 255);
+				
+				document.body.style.backgroundColor = "rgb(" + r + ", " + g + ", " + b + ")";
+				
+				
+			});
+		</script>
+	</body>
+</html>

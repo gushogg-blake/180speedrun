@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Sushi Jiggler</title>
+		<link rel="stylesheet" href="./style.css">
+		<script src="//localhost/dev/live.js"></script>
+	</head>
+	<body>
+		<div id="main">
+			<img src="./sushi.png">
+		</div>
+		<script>
+			let img = document.getElementsByTagName("img")[0];
+			
+			img.addEventListener("click", function() {
+				img.classList.add("spinning");
+				
+				setTimeout(function() {
+					img.classList.remove("spinning");
+				}, 3100);
+			});
+		</script>
+	</body>
+</html>
