@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Party Time</title>
+		<link rel="stylesheet" href="./style.css">
+		<script src="//localhost/dev/live.js"></script>
+	</head>
+	<body>
+		<div id="message">
+			Enter a birthdate and time to see if it's party time
+		</div>
+		<form id="form">
+			<label for="date">Birthdate:</label>
+			<input type="date" id="date">
+			<label for="date">Time:</label>
+			<input type="time" id="time">
+			<input type="submit" value="Party Time?">
+		</form>
+		<script>
+			let form = document.getElementById("form");
+			let dateInput = document.getElementById("date");
+			let timeInput = document.getElementById("time");
+			
+			function check() {
+				//let now = new Date();
+				
+				let dateString = dateInput.value;
+				let timeString = timeInput.value;
+				
+				if (!dateString || !timeString) {
+					alert("no birthday");
+					
+					return;
+				}
+				
+				let birthday = new Date(dateString + " " + timeString);
+				
+				let _500kthHour = new Date(dateString + " " + timeString);
+				
+				_500kthHour.setHours(_500kthHour.getHours() + 500000);
+				
+				alert("Your 500,000th hour is " + _500kthHour);
+			}
+			
+			form.addEventListener("submit", function(e) {
+				e.preventDefault();
+				
+				check();
+			});
+		</script>
+	</body>
+</html>

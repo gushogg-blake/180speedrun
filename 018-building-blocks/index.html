@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Building Blocks</title>
+		<link rel="stylesheet" href="./style.css">
+		<script src="//localhost/dev/live.js"></script>
+	</head>
+	<body>
+		<div id="main">
+			<div id="palette">
+				
+			</div>
+			<div id="canvas">
+				
+			</div>
+		</div>
+		<script>
+		const SNAP_THRESHOLD = 8;
+		
+		let paletteDiv = document.getElementById("palette");
+		let canvasDiv = document.getElementById("canvas");
+		
+		let shapes = [
+			"square",
+			"circle",
+			"circle",
+		];
+		
+		let selectedDiv;
+		
+		for (let shape of shapes) {
+			let shapeDiv = document.createElement("div");
+			
+			shapeDiv.className = shape;
+			
+			paletteDiv.appendChild(shapeDiv);
+			
+			paletteDiv.addEventListener("mousedown", startDragging);
+		}
+		
+		function startDragging(e) {
+			selectedDiv = e.target;
+			
+			window.addEventListener("mousemove", move);
+			window.addEventListener("mouseup", drop);
+		}
+		
+		function move(e) {
+			let x = e.clientX;
+			let y = e.clientY;
+			
+			//let edgesOfSelectedDiv = getEdges(selectedDiv);
+			//
+			//for (let otherShape of [...canvas.children].filter(c => c !== selectedDiv)) {
+			//	let otherEdges = getEdges(otherShape);
+			//	
+			//	// are any of edgesOfSelectedDiv within SNAP_THRESHOLD of otherEdges?
+			//	
+			//	for (let edge of edgesOfSelectedDiv) {
+			//		for (let otherEdge of otherEdges) {
+			//			if (edge.isWithinThreshold(otherEdge)) {
+			//				x += edge.getXAdjustmentTowards(otherEdge);
+			//				y += edge.getXAdjustmentTowards(otherEdge);
+			//			}
+			//		}
+			//	}
+			//}
+			
+			selectedDiv.style.top = y + "px";
+			selectedDiv.style.left = x + "px";
+		}
+		
+		function drop(e) {
+			selectedDiv = null;
+			
+			window.removeEventListener("mousemove", move);
+			window.removeEventListener("mouseup", drop);
+		}
+		</script>
+	</body>
+</html>

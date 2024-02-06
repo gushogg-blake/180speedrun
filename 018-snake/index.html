@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Snake</title>
+		<link rel="stylesheet" href="./style.css">
+		<script src="//localhost/dev/live.js"></script>
+	</head>
+	<body>
+		<div id="wrapper">
+			<div id="board">
+				<canvas id="canvas"></canvas>
+			</div>
+		</div>
+		<button id="start">Start</button>
+		<script>
+			let startButton = document.getElementById("start");
+			let canvas = document.getElementById("canvas");
+			let context = canvas.getContext("2d");
+			
+			startButton.addEventListener("click", start);
+			
+			const SQUARE_SIZE = 10;
+			
+			let running = false;
+			
+			let board = {
+				width: 40,
+				height: 55,
+			};
+			
+			let dir = "up";
+			
+			let snake = {
+				x: 20,
+				y: 45,
+			};
+			
+			function move() {
+				if (!running) {
+					return;
+				}
+				
+				if (dir === "up") {
+					snake.y--;
+				} else if (dir === "left") {
+					snake.x--;
+				} else if (dir === "right") {
+					snake.x++;
+				} else if (dir === "down") {
+					snake.y++;
+				}
+			}
+			
+			let food = [];
+			
+			function init() {
+				canvas.width = SQUARE_SIZE * board.width;
+				canvas.height = SQUARE_SIZE * board.height;
+				
+				render();
+			}
+			
+			function update() {
+				move();
+			}
+			
+			function tick() {
+				update();
+				render();
+			}
+			
+			function render() {
+				context.fillStyle = "white";
+				context.fillRect(0, 0, canvas.width, canvas.height);
+				
+				context.fillStyle = "gray";
+				context.fillRect(snake.x * SQUARE_SIZE, snake.y * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
+			}
+			
+			function start() {
+				running = true;
+			}
+			
+			setInterval(tick, 1000 / 30);
+			
+			init();
+		</script>
+	</body>
+</html>
